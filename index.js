@@ -4,6 +4,13 @@ const nodeMailer = require('nodemailer');
 
 // Internal
 const isTestEnv = require('./helpers').isTestEnv;
+const {
+  GET_REQUEST_STRING,
+  TEST_EMAIL,
+  TEST_HOST,
+  TEST_PORT,
+  TEST_PWD
+} = require('./constants');
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
@@ -17,11 +24,11 @@ let transporter;
 if (isTestEnv(process)) {
     // For testing purposes, we set up a ethereal.email account
     transporter = nodeMailer.createTransport({
-      host: 'smtp.ethereal.email',
+      host: TEST_HOST,
       port: 587,
       auth: {
-        user: 'efetmhkydc4mcsi4@ethereal.email',
-        pass: 'TygsX3119pKgXTSRaN'
+        user: TEST_EMAIL,
+        pass: TEST_PWD
       }
     });
 } else {
@@ -34,16 +41,14 @@ if (isTestEnv(process)) {
   });
 }
 
-app.get('/', function(req, res) {
-  const infoString = 'Hi! Please make a post request with the following params on the request body: to, subject and body.';
-
-  res.status(200).send(infoString);
+app.get('/', (req, res) => {
+  res.status(200).send(GET_REQUEST_STRING);
 });
 
-app.post('/', function(req, res) {
+app.post('/', (req, res) => {
   const { body, subject, to } = req.body;
   const mailOptions = {
-    from: isTestEnv(process) ? 'efetmhkydc4mcsi4@ethereal.email' : USER,
+    from: isTestEnv(process) ? TEST_EMAIL : USER,
     text: body,
     to,
     subject
@@ -52,7 +57,7 @@ app.post('/', function(req, res) {
   transporter.sendMail(mailOptions, (err, info) => {
     if(err) {
       console.log('ERROR', err);
-      res.status(400).send('Sorry, we have error:' + err);
+      res.status(400).send(`Sorry, we have error: ${err}`);
     } else {
       console.log('Success! ', info);
       res.status(200).send(`Success! Your message to ${info.accepted[0]} has been sent! ${info.response}`);

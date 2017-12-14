@@ -26,7 +26,7 @@ describe('Express server', () => {
 
   context('POST request', () => {
     it('should return a success message', (done) => {
-      var body = {
+      const body = {
         to: 'kevinemeraz@gmail.com',
         subject: 'hey dude',
         body: 'yoooo'
