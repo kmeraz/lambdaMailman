@@ -1,29 +1,49 @@
 // Vendor
-var express = require('express');
-var nodeMailer = require('nodemailer');
-var app = express();
+const express = require('express');
+const nodeMailer = require('nodemailer');
+
+// Internal
+const isTestEnv = require('./helpers').isTestEnv;
+
+const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-var transporter = nodeMailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.USER, // Set as env variables via AWS Lambda console
-    pass: process.env.PWD
-  }
-});
+// Set as env variables via AWS Lambda console
+const { PWD, USER } = process.env
+
+let transporter;
+
+if (isTestEnv(process)) {
+    // For testing purposes, we set up a ethereal.email account
+    transporter = nodeMailer.createTransport({
+      host: 'smtp.ethereal.email',
+      port: 587,
+      auth: {
+        user: 'efetmhkydc4mcsi4@ethereal.email',
+        pass: 'TygsX3119pKgXTSRaN'
+      }
+    });
+} else {
+  transporter = nodeMailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: USER, // Set as env variables via AWS Lambda console
+      pass: PWD
+    }
+  });
+}
 
 app.get('/', function(req, res) {
-  var infoString = 'Hi! Please make a post request with the following params on the request body: to, subject and body.';
+  const infoString = 'Hi! Please make a post request with the following params on the request body: to, subject and body.';
 
   res.status(200).send(infoString);
 });
 
 app.post('/', function(req, res) {
   const { body, subject, to } = req.body;
-
-  var mailOptions = {
-    from: process.env.USER,
+  const mailOptions = {
+    from: isTestEnv(process) ? 'efetmhkydc4mcsi4@ethereal.email' : USER,
     text: body,
     to,
     subject
@@ -35,8 +55,7 @@ app.post('/', function(req, res) {
       res.status(400).send('Sorry, we have error:' + err);
     } else {
       console.log('Success! ', info);
-      res.status(200).send('Success! Your message to ' + info.accepted[0] +
-        ' has been sent! ' + info.response);
+      res.status(200).send(`Success! Your message to ${info.accepted[0]} has been sent! ${info.response}`);
     }
   });
 });
