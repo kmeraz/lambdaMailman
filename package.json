@@ -19,5 +19,8 @@
   "dependencies": {
     "express": "^4.16.2",
     "nodemailer": "^4.4.1"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1"
   }
 }
