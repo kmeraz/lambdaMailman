@@ -4,7 +4,7 @@
   "description": "a lambda function that fires an email",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/index.test.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
     "chai": "^4.1.2",
-    "chai-http": "^3.0.0"
+    "chai-http": "^3.0.0",
+    "mocha": "^4.0.1"
   }
 }

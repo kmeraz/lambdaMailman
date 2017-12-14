@@ -29,6 +29,7 @@ If you would like to clone the repo and set up a lambda + gateway instance of yo
 ```
 git clone https://github.com/kmeraz/lambdaMailman
 npm i
-Install AWS CLI per your preference https://aws.amazon.com/cli/
+Install AWS CLI per your preference
+npm i -g claudia
 
 ```
