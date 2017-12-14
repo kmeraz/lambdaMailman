@@ -42,6 +42,7 @@ if (isTestEnv(process)) {
 }
 
 app.get('/', (req, res) => {
+  // We remind users to make a POST request instead
   res.status(200).send(GET_REQUEST_STRING);
 });
 
