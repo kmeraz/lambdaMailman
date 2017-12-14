@@ -1,7 +1,7 @@
 {
   "name": "lambda-mailman",
   "version": "1.0.0",
-  "description": "",
+  "description": "a lambda function that fires an email",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/kmeraz/lambdaMailman#readme",
   "dependencies": {
+    "aws-serverless-express": "^3.0.2",
+    "body-parser": "^1.18.2",
+    "claudia-api-builder": "^2.5.1",
     "express": "^4.16.2",
     "nodemailer": "^4.4.1"
   },

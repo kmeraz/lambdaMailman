@@ -1,12 +1,18 @@
-import express from 'express';
+// Vendor
+var express = require('express');
+var app = express();
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-const app = express();
-const port = process.env.PORT || 8080;
-
-app.get('/', function(req, res){
-  console.log("request to / with req:", req);
+app.get('/', function(req, res) {
+  console.log('THIS IS REQ', req.body);
+  res.send(req.body);
 });
 
-app.listen(port, () => {
-  console.log('LambdaMailman is ready to deliver via port:', port);
+app.post('/', function(req, res) {
+  console.log('THIS IS REQ.BODY', req);
+  const { body, subject, to } = req.body;
+  res.send('THIS IS REQ:' + body + subject + to);
 });
+
+module.exports = app;

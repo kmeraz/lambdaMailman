@@ -1,0 +1,10 @@
+{
+  "lambda": {
+    "role": "lambda-mailman-executor",
+    "name": "lambda-mailman",
+    "region": "us-west-2"
+  },
+  "api": {
+    "id": "hqso1dvd55"
+  }
+}
