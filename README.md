@@ -28,8 +28,16 @@ If you would like to clone the repo and set up a lambda + gateway instance of yo
 
 ```
 git clone https://github.com/kmeraz/lambdaMailman
+
 npm i
-Install AWS CLI per your preference
+
+Install AWS CLI per your preference and set your credentials
+
 npm i -g claudia
 
+claudia create --region us-west-2 --module-api
+
+Navigate to your lamba function within AWS console and set the USER and PWD env variables to be a gmail address' credentials
+
+Ping your API
 ```
