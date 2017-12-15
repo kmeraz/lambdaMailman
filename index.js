@@ -25,7 +25,7 @@ if (isTestEnv(process)) {
     // For testing purposes, we set up a ethereal.email account
     transporter = nodeMailer.createTransport({
       host: TEST_HOST,
-      port: 587,
+      port: TEST_PORT,
       auth: {
         user: TEST_EMAIL,
         pass: TEST_PWD

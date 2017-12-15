@@ -25,7 +25,7 @@ to: RECIPIENT_OF_YOUR_CHOICE // required
 
 subject: EMAIL_SUBJECT // optional
 
-body: EMAIL_BODY //optional
+body: EMAIL_BODY // optional
 ```
 
 ### Installation
