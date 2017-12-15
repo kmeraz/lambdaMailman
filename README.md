@@ -27,6 +27,7 @@ subject: EMAIL_SUBJECT // optional
 
 body: EMAIL_BODY // optional
 ```
+![](lambdaMailmanPostman.png)
 
 ### Installation
 If you would like to clone the repo and set up a lambda + gateway instance of your own, you will need:
