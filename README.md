@@ -14,7 +14,7 @@ https://github.com/nodemailer/nodemailer
 
 NodeMailer allows us to send an email from a Node server, pre-configured with an arbitrary sender's email address. Here, we've set this configuration via env variables in AWS Lambda.
 
-### Usage
+### Usage [NO LONGER ACTIVE]
 https://hqso1dvd55.execute-api.us-west-2.amazonaws.com/latest
 
 Using LambdaMailman is pretty straightforward. Simply utilize the tool of your choice to make a POST request to the url above (e.g. Postman), with the required params:
